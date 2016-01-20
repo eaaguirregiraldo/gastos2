@@ -14,7 +14,7 @@
 class ExpensesController < ApplicationController
   def index
     if params[:concept]
-      @expenses = Expense.where(concept: params[:concept]).order("date DESC")      
+      @expenses = Expense.where(["concept LIKE ?", "%#{params[:concept]}%"]).order("date DESC")      
     else
       @expenses = Expense.order("date DESC")
     end     
